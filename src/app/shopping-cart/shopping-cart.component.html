@@ -13,14 +13,16 @@
         <table class="table table-hover table-inverse">
             <thead class="thead-inverse">
                 <tr>
-                    <th></th>
-                    <th>Product</th>
+                    <th scope="col">Product image</th>
+                    <th scope="col">Product</th>
                     <th
+                        scope="col"
                         class="text-center"
                         style="width: 230px;">
                         Quantity
                     </th>
                     <th
+                        scope="col"
                         class="text-right"
                         style="width: 200px">
                         Price
@@ -33,7 +35,7 @@
                         <td>
                             <img
                                 [src]="item.product.imageUrl"
-                                alt="Product image"
+                                [alt]="item.product.title"
                                 class="img rounded-circle"
                                 width="80"
                                 height="80">
@@ -50,8 +52,8 @@
             </tbody>
             <tfoot class="thead-inverse">
                 <tr>
-                    <th></th>
-                    <th></th>
+                    <th>-</th>
+                    <th>-</th>
                     <th
                         class="text-center"
                         style="width: 230px;">

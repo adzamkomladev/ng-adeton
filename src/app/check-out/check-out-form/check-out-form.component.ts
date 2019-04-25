@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderService } from 'src/app/order.service';
 import { Order } from 'src/app/order';
 import { Router } from '@angular/router';
-import { firestore } from 'firebase';
-import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-check-out-form',

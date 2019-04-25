@@ -2,8 +2,12 @@
     <a
         class="navbar-brand ml-5"
         [routerLink]="['/']"
-        routerLinkActive="active">
-        <i class="fas fa-store-alt lg"></i>
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true}">
+        Adeton
+        <i
+            class="fas fa-store-alt lg"
+            aria-hidden="true"></i>
     </a>
 
     <ul class="navbar-nav mr-auto">

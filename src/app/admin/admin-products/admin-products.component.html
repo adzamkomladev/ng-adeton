@@ -1,9 +1,18 @@
 <p>
-  <a [routerLink]="['/admin', 'products', 'new']" class="btn btn-primary">New Product</a>
+    <a
+        [routerLink]="['/admin', 'products', 'new']"
+        class="btn btn-primary">
+        New Product
+    </a>
 </p>
 
 <p>
-  <input (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search..." #query>
+    <input
+        (keyup)="filter(query.value)"
+        type="text"
+        class="form-control"
+        placeholder="Search..."
+        #query>
 </p>
 
 <!-- <data-table [items]="items" [itemCount]="itemCount" (reload)="reloadItems($event)">
@@ -23,32 +32,56 @@
 </data-table> -->
 
 <table class="table">
-  <thead>
-    <tr>
-      <th scope="col" sortable="title" (sort)="onSort($event)">Title</th>
-      <th scope="col" sortable="price" (sort)="onSort($event)">Price GH₵</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of processedFilteredProducts">
-      <td scope="row">{{ product.title }}</td>
-      <td>{{ product.price | number }}</td>
-      <td>
-        <a [routerLink]="['/admin', 'products', product.id]">Edit</a>
-      </td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th
+                scope="col"
+                sortable="title"
+                (sort)="onSort($event)">
+                Title
+            </th>
+            <th
+                scope="col"
+                sortable="price"
+                (sort)="onSort($event)">
+                Price GH₵
+            </th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            scope="row"
+            *ngFor="let product of processedFilteredProducts">
+            <td>{{ product.title }}</td>
+            <td>{{ product.price | number }}</td>
+            <td>
+                <a [routerLink]="['/admin', 'products', product.id]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 <div class="d-flex justify-content-between p-2">
-  <ngb-pagination [collectionSize]="filteredProducts.length" [(page)]="page" [pageSize]="pageSize">
-  </ngb-pagination>
+    <ngb-pagination
+        [collectionSize]="filteredProducts.length"
+        [(page)]="page"
+        [pageSize]="pageSize">
+    </ngb-pagination>
 
-  <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-    <option [ngValue]="2">2 items per page</option>
-    <option [ngValue]="4">4 items per page</option>
-    <option [ngValue]="6">6 items per page</option>
-    <option [ngValue]="8">8 items per page</option>
-  </select>
+    <label
+        hidden="true"
+        for="select">
+        Change number of items per page
+    </label>
+    <select
+        id="select"
+        class="custom-select"
+        style="width: auto"
+        [(ngModel)]="pageSize">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+        <option [ngValue]="8">8 items per page</option>
+    </select>
 </div>
