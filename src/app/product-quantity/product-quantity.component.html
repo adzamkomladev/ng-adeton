@@ -1,0 +1,17 @@
+<div class="row no-gutters">
+    <div class="col-2">
+        <button
+            class="btn btn-secondary btn-block"
+            (click)="onRemoveFromCart()">
+            -
+        </button>
+    </div>
+    <div class="col text-center">{{ item?.quantity + ' in cart' }}</div>
+    <div class="col-2">
+        <button
+            class="btn btn-secondary btn-block"
+            (click)="onAddToCart()">
+            +
+        </button>
+    </div>
+</div>

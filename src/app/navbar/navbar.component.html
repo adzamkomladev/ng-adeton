@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <a
+        class="navbar-brand ml-5"
+        [routerLink]="['/']"
+        routerLinkActive="active">
+        <i class="fas fa-store-alt lg"></i>
+    </a>
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a
+                class="nav-link"
+                [routerLink]="['/shopping-cart']"
+                routerLinkActive="active">
+                <i
+                    class="fas fa-shopping-cart md"
+                    aria-hidden="true"></i>
+                <span class="badge badge-pill badge-warning">{{ totalQuantity }}</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <ng-template #anonymousUser>
+            <li class="nav-item ml-auto">
+                <a
+                    class="nav-link"
+                    [routerLink]="['/login']"
+                    routerLinkActive="active">
+                    Login
+                </a>
+            </li>
+        </ng-template>
+        <li
+            class="nav-item dropdown"
+            *ngIf="auth.user$ | async as user; else anonymousUser"
+            ngbDropdown>
+            <a
+                class="nav-link dropdown-toggle"
+                id="dropdown01"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ngbDropdownToggle>
+                {{ user.displayName }}
+            </a>
+            <div
+                class="dropdown-menu"
+                aria-labelledby="dropdown01"
+                ngbDropdownMenu>
+                <a
+                    class="dropdown-item"
+                    [routerLink]="['/my-orders']"
+                    routerLinkActive="active">
+                    My Orders
+                </a>
+                <ng-container *ngIf="user.isAdmin">
+                    <a
+                        class="dropdown-item"
+                        [routerLink]="['/admin', 'orders']"
+                        routerLinkActive="active">
+                        Manage Orders
+                    </a>
+                    <a
+                        class="dropdown-item"
+                        [routerLink]="['/admin', 'products']"
+                        routerLinkActive="active">
+                        Manage Products
+                    </a>
+                </ng-container>
+                <a
+                    class="dropdown-item"
+                    (click)="auth.signOut()">
+                    Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>

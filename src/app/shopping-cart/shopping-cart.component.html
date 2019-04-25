@@ -1,0 +1,76 @@
+<h1>Shopping Cart</h1>
+<ng-container *ngIf="totalQuantity > 0; else elseTemplate">
+    <div class="row col-md-10">
+        <p class="mb-5">
+            You have {{ totalQuantity  }} items in your shopping cart
+            <button
+                (click)="onClearShoppingCart()"
+                class="btn btn-danger btn-sm mr-5">
+                Clear Shopping Cart
+            </button>
+        </p>
+
+        <table class="table table-hover table-inverse">
+            <thead class="thead-inverse">
+                <tr>
+                    <th></th>
+                    <th>Product</th>
+                    <th
+                        class="text-center"
+                        style="width: 230px;">
+                        Quantity
+                    </th>
+                    <th
+                        class="text-right"
+                        style="width: 200px">
+                        Price
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items">
+                    <ng-container *ngIf="item.quantity !== 0">
+                        <td>
+                            <img
+                                [src]="item.product.imageUrl"
+                                alt="Product image"
+                                class="img rounded-circle"
+                                width="80"
+                                height="80">
+                        </td>
+                        <td scope="row">{{ item.product.title }}</td>
+                        <td>
+                            <app-product-quantity [item]="item"></app-product-quantity>
+                        </td>
+                        <td class="text-right">
+                            {{ 'GH¢ ' + item.product.price * item.quantity }}
+                        </td>
+                    </ng-container>
+                </tr>
+            </tbody>
+            <tfoot class="thead-inverse">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th
+                        class="text-center"
+                        style="width: 230px;">
+                        Total
+                    </th>
+                    <th
+                        class="text-right"
+                        style="width: 200px">
+                        {{ 'GH¢ ' + totalPrice() }}
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <a
+            [routerLink]="['/check-out']"
+            class="btn btn-info">
+            Check out
+        </a>
+    </div>
+</ng-container>
+<ng-template #elseTemplate>No items in your shopping cart</ng-template>
